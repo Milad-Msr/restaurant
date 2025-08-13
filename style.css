@@ -26,7 +26,7 @@
   --black-alpha-15: #00000026;
 
   /* Gradient color */
-  --loading-text-gradient: linear-gradient(90deg, transparent 0% 16.66%, var(--smoky-black-3) 33.33% 50%,  transparent 66.66% 75%);
+  --loading-text-gradient: linear-gradient(90deg, transparent 0% 16.66%, #7a6645 33.33% 50%,  transparent 66.66% 75%);
   --gradient-1: linear-gradient(to top, #000000e6, #000000b3, transparent);  
 
   /* Typography */
@@ -100,9 +100,9 @@ html {
 
 body {
   height: 300vh;
-  overflow: hidden;
+  overflow: overlay;
   color: var(--white);
-  line-height: var(--lineHeight-5);
+  /* line-height: var(--lineHeight-5); */
   font-size: var(--fontSize-body-4);
   font-weight: var(--weight-regular);
   font-family: var(--fontFamily-roboto);
@@ -139,6 +139,62 @@ input, select, textarea {
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background-color: transparent; }
 ::-webkit-scrollbar-thumb { background-color: var(--gold-crayola); }
+
+/*•=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=*/
+
+
+
+
+/*•=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=*/
+/*=•=•=•=••=•=•=•=•       Preload       =•=•=••=•=•=•=•=•=•=*/
+/*•=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=*/
+
+  .preload {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: var(--transition-2);
+    background-color: var(--gold-crayola);
+  }
+
+  .preload > * { transition: var(--transition-1) }
+  .preload.loaded > * { opacity: 0; }
+
+  .preload.loaded {
+    transition-delay: 250ms;
+    transform: translateY(100%);
+  }
+
+  .preload img {
+    margin-bottom: 60px;
+    width: 250px;
+  }
+
+  .preload .text {
+    height: 100px;
+    font-size: 4rem;
+    margin-top: 50px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    background-clip: text;
+    background-size: 500%;
+    font-family: "Kaushan Script";
+    -webkit-text-fill-color: transparent;
+    background-image: var(--loading-text-gradient);
+    animation: loadingText 2s linear infinite ;
+  }
+
+  @keyframes loadingText {
+    0% { background-position: 100% }
+    100% { background-position: 0% } 
+  }
 
 /*•=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=*/
 
