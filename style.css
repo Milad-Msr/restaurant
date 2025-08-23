@@ -3,7 +3,6 @@
 */ 
 
 :root {
-
   --gold-crayola: hsl(38, 61%, 73%);
   --quick-silver: hsla(0, 0%, 65%, 1);
   --davys-grey: hsla(30, 3%, 34%, 1);
@@ -21,7 +20,7 @@
   --black-alpha-80: hsla(0, 0%, 0%, 0.8);
   --black-alpha-15: hsla(0, 0%, 0%, 0.15);
   
-  --loading-text-gradient: linear-gradient(90deg, transparent 0% 16.66%, var(--smoky-black-3) 33.33% 50%,  transparent 66.66% 75%);
+  --loading-text-gradient: linear-gradient(90deg, transparent 0% 16.66%, #7a6645 33.33% 50%,  transparent 66.66% 75%);
   --gradient-1: linear-gradient(to top,hsla(0, 0%, 0%, 0.9),hsla(0, 0%, 0%, 0.7),transparent);
 
   /* font-family */
@@ -74,6 +73,10 @@
   --transition-3: 1000ms ease;
 }
 
+@font-face {
+  font-family: "tan-pearl";
+  src: url('fonts/tan-pearl.otf');
+}
 
 
 
@@ -98,11 +101,11 @@ body {
   background-color: var(--eerie-black-1);
   color: var(--white);
   font-family: var(--fontFamily-dm_sans);
-  height: 300vh;
-  overflow: hidden;
-  line-height: var(--lineHeight-5);
   font-size: var(--fontSize-body-4);
   font-weight: var(--weight-regular);
+  /* line-height: var(--lineHeight-5); */
+  overflow: hidden;
+  height: 300vh;
 }
 
 body.loaded { overflow: overlay; }
@@ -136,3 +139,57 @@ input, select, textarea {
 ::-webkit-scrollbar-track { background-color: transparent; }
 ::-webkit-scrollbar-thumb { background-color: var(--gold-crayola); }
 
+
+/* 
+  -*- MARK: Preload
+*/ 
+
+
+.preload {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  position: fixed;
+  place-content: center;
+  justify-items: center;
+  transition: var(--transition-2);
+  background-color: var(--gold-crayola);
+}
+
+.preload > * { transition: var(--transition-1); }
+.preload.loaded > * { opacity: 0; }
+
+.preload.preload.loaded {
+  transition-delay: 250ms;
+  transform: translateY(100%);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
+}
+
+.preload .text {
+  font-family: "tan-pearl";
+  letter-spacing: 16px;
+  background-size: 500%;
+  background-clip: text;
+  text-transform: uppercase;
+  font-size: calc(3rem + 3vw);
+  padding-inline-start: 16px;
+  font-weight: var(--weight-bold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: var(--loading-text-gradient);
+  animation: loadingText 2s linear infinite ;
+}
+
+@keyframes loadingText {
+  0% {background-position: 100% ;}
+  100% {background-position: 0%; }
+}
