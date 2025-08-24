@@ -17,6 +17,8 @@ const addEventOnElements = (elements, eventType, callback) => {
   };
 };
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 const navbar = document.querySelector('[data-navbar]');
 const navTogglers = document.querySelectorAll('[data-nav-toggler]');
 const overlay = document.querySelector('[data-overlay]');
@@ -34,6 +36,10 @@ addEventOnElements(navTogglers, 'click', toggleNavbar);
 
 
 
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
 const header = document.querySelector('[data-header]');
 
 let hideScrollPos = 0;
@@ -50,3 +56,5 @@ window.addEventListener('scroll', () => {
   ? (header.classList.add('active'), hideHeader()) 
   : header.classList.remove('active');
 });
+
+//////////////////////////////////////////////////////////////////////////////////////
